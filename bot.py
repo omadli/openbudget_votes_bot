@@ -13,7 +13,7 @@ dp = Dispatcher(bot=bot, storage=MemoryStorage())
 session = None
 
 
-async def on_startup():
+async def on_startup(dp: Dispatcher):
     await bot.set_my_commands(
         commands=[
             types.BotCommand("start", "Botni ishga tushirish"),
