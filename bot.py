@@ -73,12 +73,12 @@ async def captcha_handler(msg: types.Message, state: FSMContext):
 @dp.callback_query_handler(text="dl", state="download")
 async def dl_handler(call: types.CallbackQuery, state: FSMContext):
     await call.answer()
+    await call.message.delete()
     data = await state.get_data()
     token = data["token"]
     global session
     try:
         total_pages, content = await get_list_votes(session, token)
-        await call.message.delete()
         await call.message.answer(
             f"Yuklab olinmoqda...\n"
             f"Jami {total_pages+1} sahifa"
